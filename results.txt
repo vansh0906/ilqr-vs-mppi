@@ -1,0 +1,14 @@
+1/10-scale car (dynamic bicycle, Pacejka-style tyres), 20 Hz MPC, 1.25 s horizon
+Winding 4 m road, 40 m long, 7 random obstacles; target speed 5.0 m/s; 10 random layouts, 10 parallel workers
+
+case                      planner   success  collisions  off-road     time  min clearance  steer rate  compute/step
+model = reality           iLQR       10/10          0         0   8.76 s          14 cm      12 °/s         42 ms
+model = reality           MPPI       10/10          0         0   8.66 s          14 cm      69 °/s         29 ms
+
+40% less grip than model  iLQR        9/10          1         0   8.83 s          11 cm      21 °/s         54 ms
+40% less grip than model  MPPI       10/10          0         0   8.85 s          19 cm      72 °/s         31 ms
+
+min clearance = mean over layouts of the closest approach to any obstacle (negative = hit)
+steer rate = mean |change in steering| per second (lower = smoother)
+(ran in 29 s)
+saved ilqr_vs_mppi.png
